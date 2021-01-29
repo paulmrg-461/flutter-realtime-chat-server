@@ -84,10 +84,17 @@ const login = async ( req, res = response ) => {
             msg: 'There was a problem! Please contact the administrator.'
         });
     }
+}
 
+const renewToken = async (req, res = response ) => {
+    res.json({
+        ok: true,
+        uid: req.uid
+    });
 }
 
 module.exports = {
     createNewUser,
-    login
+    login, 
+    renewToken
 }
