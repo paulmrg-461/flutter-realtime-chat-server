@@ -13,23 +13,13 @@ const server = require('http').createServer(app);
 module.exports.io = require('socket.io')(server);
 require('./sockets/socket');
 
-
-
-
-// Path público
+// Public path
 const publicPath = path.resolve( __dirname, 'public' );
 app.use( express.static( publicPath ) );
 
-
-
-
-
 server.listen( process.env.PORT, ( err ) => {
-
     if ( err ) throw new Error(err);
-
     console.log('Server is online in port:', process.env.PORT );
-
 });
 
 
