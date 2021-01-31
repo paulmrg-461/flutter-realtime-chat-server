@@ -18,7 +18,6 @@ io.on('connection', client => {
     // Listen personal message from client
     client.on('personal-message', async (payload) => {
         await saveMessage( payload );
-        console.log(payload);
         io.to(payload.to).emit('personal-message', payload);
     });
 
