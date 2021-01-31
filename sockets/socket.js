@@ -4,7 +4,6 @@ const { userOnline, userOffline } = require('../controllers/socket');
 
 // Mensajes de Sockets
 io.on('connection', client => {
-    console.log('Client is online');
     const [ valid, uid ] = checkJWT(client.handshake.headers['x-token']);
 
     //Check authentication
@@ -12,6 +11,14 @@ io.on('connection', client => {
 
     //Client authenticated
     userOnline(uid);
+
+    //User login at particular room
+    //Global room, client.id, 
+    client.join(uid);
+    // Listen personal message from client
+    client.on('personal-message', (payload) => {
+        console.log(payload);
+    });
 
     client.on('disconnect', () => {
         userOffline( uid );
